@@ -1,0 +1,22 @@
+KAAM v50 — Android build blocker status (2026-10-21)
+
+What was changed
+- Updated the Kotlin Compose compiler plugin pin to Kotlin 2.4.10 and the Compose BOM to 2026.08.00, aligning the project with current official Android Compose setup guidance for the AGP 9 generation.
+- Retained AGP 9.4.0 + Gradle 9.6.0 + Android API 37 + Build Tools 36.0.0, which match the official AGP 9.4 compatibility table.
+- Retained the hosted GitHub Actions build workflow added in v49. It installs the Android SDK, runs offline regression checks, builds :app:assembleDebug, and uploads the APK only if successful.
+
+Verification
+- Offline QA: 159/159 static checks passed.
+- Cloud workflow validation: 9/9 passed.
+- Audio assets: 4/4 passed.
+- Scheduling/timing assertions: 11,588 passed.
+- Notification-copy assertions: 3,002 passed.
+- Pure JVM tests: 47 passed, 0 failed.
+- Gradle build was retried after the toolchain update and still fails before Gradle starts with java.net.UnknownHostException: downloads.gradle.org.
+
+Hard blocker remains
+This execution environment has no outbound DNS/network access and no Android SDK platform installed. It also has no connected GitHub repository or runner credentials, so the hosted workflow cannot be triggered from here. Therefore no Android/Compose compile has been completed and no installable APK has been produced. Do not claim otherwise.
+
+Official compatibility references
+- AGP 9.4.0 compatibility: https://developer.android.com/build/releases/agp-9-4-0-release-notes
+- Compose compiler plugin setup and current BOM guidance: https://developer.android.com/develop/ui/compose/setup-compose-dependencies-and-compiler

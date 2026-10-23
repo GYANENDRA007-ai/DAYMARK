@@ -1,0 +1,29 @@
+KAAM v49 build status — 21 October 2026
+
+Build command attempted:
+./gradlew :app:assembleDebug --stacktrace --no-daemon --console=plain
+
+Result: Gradle Wrapper stops before Gradle starts. Java reports:
+java.net.UnknownHostException: downloads.gradle.org
+
+Environment facts:
+- Java 21 is installed.
+- No system Gradle installation is present.
+- No Android SDK Platform 37 or android.jar is present in this container.
+- Outbound DNS/network access is unavailable here.
+
+Work completed in v49:
+- Added .github/workflows/android-build.yml for a hosted GitHub Actions runner.
+- Workflow provisions JDK 21 and Android SDK Platform 37 / Build Tools 36.0.0.
+- Workflow runs offline QA, invokes :app:assembleDebug, and uploads the APK only if build succeeds.
+- Workflow also uploads available build diagnostics on failure.
+- Added offline workflow-structure validation; 9/9 checks passed.
+
+Offline regression QA:
+- Static checks: 159/159 passed.
+- Bundled audio assets: 4/4 passed.
+- Timer/scheduling/repeat/fixed-time/window/snooze assertions: 11,588 passed.
+- Notification-copy assertions: 3,002 passed.
+- Pure JVM tests: 47 passed.
+
+Honest limitation: GitHub Actions workflow has not been run because this session has no connected GitHub repository/runner or repository credentials. No APK was generated. Android/Compose compilation and real-device acceptance remain unverified.

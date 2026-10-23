@@ -1,0 +1,15 @@
+KAAM v26 build attempt — 17 October 2026
+
+Command:
+./gradlew :app:assembleDebug --stacktrace --no-daemon --console=plain
+
+Observed failure:
+Downloading https://services.gradle.org/distributions/gradle-9.6.0-bin.zip
+java.net.UnknownHostException: services.gradle.org
+
+Failure stage: Gradle Wrapper distribution download, before Gradle starts. This is an environment DNS/network blocker, not a compiler error. A separate direct download attempt also failed. No Android SDK is configured in this environment, so an APK cannot be produced here until both the Gradle distribution/dependencies and Android SDK are available.
+
+The v26 project removes the separate forced-JDK-25 provisioning requirement, but does not claim to solve the network-dependent Gradle distribution download. On the Windows development machine, use:
+powershell -ExecutionPolicy Bypass -File .\tools\build_debug_windows.ps1
+
+That script records the full build output under build-diagnostics\ and prints the resulting APK path on success.

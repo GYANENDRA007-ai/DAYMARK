@@ -1,0 +1,10 @@
+KAAM v41 offline QA summary — 20 October 2026
+Static source/resource checks: 153/153 passed
+Bundled WAV assets: 4/4 valid
+Timer/scheduling/recurrence/window/snooze assertions: 11,588 passed
+Notification-copy invariant assertions: 3,002 passed
+Pure JVM unit-test methods: 45 passed, 0 failed
+Offline QA orchestration: passed
+Android/Compose build: blocked before Gradle starts; UnknownHostException for downloads.gradle.org
+Android SDK: not configured in this environment
+APK/device acceptance: not verified

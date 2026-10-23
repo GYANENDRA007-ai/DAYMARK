@@ -1,0 +1,18 @@
+KAAM v28 build attempt — 19 October 2026
+
+Command:
+./gradlew :app:assembleDebug --stacktrace --no-daemon --console=plain
+
+Observed failure:
+Downloading https://downloads.gradle.org/distributions/gradle-9.6.0-bin.zip
+java.net.UnknownHostException: downloads.gradle.org
+
+Failure stage: Gradle Wrapper distribution download, before Gradle starts. This environment cannot resolve the official distribution host and has no Android SDK Platform 37 installation. No APK or Android compile result is available.
+
+On Windows, install Android SDK Platform 37 and Build-Tools 36.0.0 through Android Studio, use Android Studio's JDK 17+, then run:
+powershell -ExecutionPolicy Bypass -File .\tools\build_debug_windows.ps1
+
+The new offline QA command is:
+python .\tools\verify_kaam_offline.py
+
+Do not disable the pinned Gradle distribution checksum. Share the timestamped build-diagnostics log if the Windows build fails.

@@ -1,0 +1,8 @@
+KAAM v48 build status — 21 October 2026
+
+Command attempted:
+./gradlew :app:assembleDebug --stacktrace --no-daemon --console=plain
+
+Result: Gradle Wrapper failed before Gradle startup while downloading the pinned distribution. Error: java.net.UnknownHostException: downloads.gradle.org. This environment has no Android SDK Platform 37 configured. No APK was generated and no full Android/Compose compile was completed.
+
+Offline QA: 159/159 static checks, 4/4 sound assets, 11,588 timing/scheduling assertions, 3,002 notification-copy assertions, 47 pure JVM tests all passed.
