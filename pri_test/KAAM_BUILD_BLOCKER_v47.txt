@@ -1,0 +1,12 @@
+KAAM v47 build attempt — 21 October 2026
+
+Command:
+./gradlew :app:assembleDebug --stacktrace --no-daemon --console=plain
+
+Observed result:
+Downloading https://downloads.gradle.org/distributions/gradle-9.6.0-bin.zip
+java.net.UnknownHostException: downloads.gradle.org
+
+Failure stage: Gradle Wrapper distribution download, before Gradle starts. DNS resolution is unavailable for the Gradle distribution host in this environment. No Android SDK Platform 37 is configured either. No APK was generated and no Android compilation result is available.
+
+Offline QA still passes: 158/158 static checks, 4/4 sound assets, 11,588 timing/scheduling assertions, 3,002 notification-copy assertions, and 47 pure JVM tests.

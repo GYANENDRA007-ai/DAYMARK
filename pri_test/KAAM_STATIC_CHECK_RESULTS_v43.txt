@@ -1,0 +1,156 @@
+PASS | MainActivity source exists
+PASS | Public app label does not use the internal KAAM codename
+PASS | Visible home wordmark uses neutral working label, not KAAM codename
+PASS | Notification title uses task name and kind-specific phrasing
+PASS | Manifest XML parses
+PASS | All Android XML resource files parse
+PASS | Task model includes creation timestamp
+PASS | Task model includes completion timestamp
+PASS | Timer start timestamp is persisted for reboot-safe deadlines
+PASS | Timer deadline uses the same saved-start/legacy-creation fallback as its dashboard
+PASS | Task model separates item kind from schedule
+PASS | Item kind is saved and old data defaults safely
+PASS | New task IDs avoid collisions with IDs already saved
+PASS | New items preserve selected Task / Timer / Alarm / Alert kind
+PASS | Editing preserves item kind
+PASS | Home offers four readable creation paths
+PASS | Timer, Alarm and Alert have distinct scheduling choices
+PASS | Duration timers do not show calendar-repeat controls
+PASS | Empty first-run home explains the next action
+PASS | Task editor validates empty names and invalid clock times
+PASS | Task editor validates timer duration
+PASS | Tasks are persisted as JSON
+PASS | Tasks can be loaded from preferences
+PASS | Task storage mirrors the latest saved JSON to a recovery backup
+PASS | Corrupt task payload attempts backup recovery instead of silently clearing all tasks
+PASS | Missing or blank primary task storage also attempts last-known-good backup recovery
+PASS | Malformed individual task records do not discard all valid records
+PASS | Task recovery rejects non-positive IDs and skips duplicate IDs to protect PendingIntent identity
+PASS | Notification permission requested on Android 13+
+PASS | Settings provides a recovery route for denied notification permission
+PASS | Exact alarm access is checked
+PASS | Exact-alarm permission race is caught without crashing
+PASS | Exact-alarm settings are never launched from a background receiver
+PASS | All exact-alarm schedule branches use the guarded helper
+PASS | Multiple tasks can wait for exact-alarm permission
+PASS | Returning from exact-alarm settings retries deferred tasks only
+PASS | Foreground exact-alarm recovery isolates failures and requeues only the failed reminder
+PASS | Deferred exact-alarm IDs are removed after access is restored
+PASS | Alarm scheduling supports timer mode
+PASS | Alarm scheduling supports interval repeat
+PASS | Alarm scheduling supports daily repeat
+PASS | Reminder cancellation exists
+PASS | Cancelling a reminder also clears its deferred exact-alarm retry ID
+PASS | Notification tap opens MainActivity
+PASS | Notification carries the originating task ID
+PASS | Notification tap resolves the saved task after loading
+PASS | Existing activity receives notification taps
+PASS | Reminder receiver exists
+PASS | Reminder receiver ignores deleted tasks and invalid task IDs
+PASS | Boot receiver exists
+PASS | Boot permission declared
+PASS | Boot receiver registered
+PASS | System recovery receiver is not externally exported to prevent spoofed schedule-reset broadcasts
+PASS | Boot/clock/permission recovery runs without exact-alarm access so snoozes can still be restored
+PASS | Exact-alarm permission grant broadcast is declared and guarded by a fresh permission check
+PASS | Wall-clock and time-zone changes trigger rescheduling without resetting duration timers
+PASS | A single reminder restore failure is logged and does not stop recovery of later tasks
+PASS | Notification tone profiles present
+PASS | Notifications use Hinglish/slang copy across Task / Timer / Alarm / Alert
+PASS | Notification copy selection is extracted into a testable pure helper
+PASS | Notification copy helper has no Android dependencies
+PASS | Notification copy rotation has JVM unit tests for selection, no-repeat, fallback, and empty pools
+PASS | Recurring notifications avoid repeating the same copy line consecutively without hash collisions
+PASS | Deleting an item clears its persisted notification-copy memory
+PASS | Sound profiles present
+PASS | Alert has its own default sound profile
+PASS | Notification sounds are bundled original resources
+PASS | Sound settings describe the bundled sound identities
+PASS | Sound settings provide a real audio preview for each reminder kind
+PASS | Each reminder kind has its own persisted sound preference
+PASS | Notifications use a channel selected for their own reminder kind
+PASS | Sound channels have distinct vibration patterns by reminder type
+PASS | Sound settings expose per-kind choices
+PASS | Sound configuration and app settings are separate destinations
+PASS | Settings explains finite recurrence and snooze behavior in user-facing language
+PASS | Legacy global sound preference remains compatible for task reminders
+PASS | Report period filters present
+PASS | Home has dedicated Active / Completed / History views
+PASS | Reports count completions independently of creation date
+PASS | Daily intention is persisted
+PASS | Task create/edit/detail UI symbols present
+PASS | Delete actions require explicit confirmation
+PASS | Confirmed deletion cancels the reminder before removing the task
+PASS | Task view tabs show counts
+PASS | Task cards use readable body text sizes
+PASS | Task details show creation and completion timestamps
+PASS | Interval repeat offers 15/30-minute and 1–4-hour frequencies for flexible windows
+PASS | Minute-precision interval persists and migrates old hour-based tasks safely
+PASS | Timer edits preserve the running countdown unless duration changes
+PASS | Optional date deadline persists and displays overdue state without altering reminder schedule
+PASS | Active task list prioritizes overdue and upcoming dated tasks
+PASS | Mode dashboards include due/overdue status when an item has a deadline
+PASS | Daily repeat requires a clock-based schedule and is hidden for ANYTIME
+PASS | Timer UI symbols present
+PASS | AM/PM time formatting present
+PASS | Notifications expose one-tap Done and Snooze actions
+PASS | Notification action PendingIntents are distinct from reminder PendingIntents
+PASS | Reminder, action and content PendingIntents use full-ID URI identities to avoid Long hash collisions
+PASS | Done action persists completion and cancels future reminder
+PASS | Done action refreshes an already-open screen after persistence
+PASS | Task state refresh receiver is lifecycle-scoped and not externally exported
+PASS | Foreground return reloads persisted task state without rescheduling reminders
+PASS | Snooze action dismisses stale notifications for deleted/completed items
+PASS | Snooze deadline is persisted and restored before normal schedule on boot
+PASS | Explicit completion/deletion clears persisted snooze while schedule replacement preserves it
+PASS | Editing a task preserves an existing snooze while replacing the regular alarm
+PASS | Snooze action schedules an inexact fallback without exact-alarm permission
+PASS | One-shot duration timers are not accidentally rescheduled as recurring past deadlines
+PASS | Snooze clears a stale exact-alarm retry marker before scheduling
+PASS | Timer, interval and snooze time arithmetic extracted into pure helpers
+PASS | JVM tests cover timer deadline, invalid durations, intervals and snooze
+PASS | Home has separate management destinations for Task, Timer, Alarm and Alert
+PASS | Each reminder mode dashboard filters saved items by its own kind
+PASS | Task, Alarm and Alert dashboards show recurrence summaries with minute precision
+PASS | Mode dashboards can open saved item details and create the matching kind
+PASS | Timer dashboard refreshes while visible and labels expired countdowns accurately
+PASS | Timer remaining-minute arithmetic has boundary regression tests
+PASS | AM/PM parsing is extracted into a pure helper with boundary tests
+PASS | Clock parser rejects malformed repeated suffixes and embedded whitespace
+PASS | Fixed-time next occurrence is deterministic and tested for today/tomorrow
+PASS | Production fixed-time scheduling uses the tested pure helper
+PASS | Occurrence limit and delivered count are separate persisted task fields
+PASS | Finite recurrence limit is configurable in the task editor
+PASS | Occurrence-limit editor count resets visually when schedule parameters are changed
+PASS | Finite recurrence stops after the configured count and unlimited remains supported
+PASS | Snoozed delivery does not consume recurrence occurrence count
+PASS | Recurrence limit boundary tests exist
+PASS | Optional daily interval windows persist, validate and schedule within the window
+PASS | Time-window UI offers selectable start/end times and a clear action
+PASS | Time-window arithmetic and invalid-window boundaries have regression tests
+PASS | Gradle no longer forces an unnecessary JDK 25 download
+PASS | Windows build helper checks Java and Android SDK then captures Gradle output
+PASS | Windows build prerequisites and APK output path are documented
+PASS | Offline QA runner orchestrates static, assets, smoke suites and pure JVM tests
+PASS | Offline QA compiles pure Kotlin sources in one bounded compiler invocation
+PASS | Kotlin braces balanced | net=0, minimum=0
+PASS | Kotlin parentheses balanced | net=0, minimum=0
+PASS | Kotlin brackets balanced | net=0, minimum=0
+PASS | Persisted recurrence counts clamp malformed negative values
+PASS | Regular recurrence count increment is overflow-safe
+PASS | Recurrence count overflow and malformed-value regression tests exist
+PASS | Snooze count semantics have a direct pure-function regression test
+PASS | Standalone notification-copy smoke runner covers pool, no-repeat, single-item and empty-pool cases
+PASS | Bundled sound assets have a dedicated standard-library validator
+PASS | Settings copy avoids exposing the internal KAAM codename as consumer branding
+PASS | Daily intention copy avoids an unqualified claim that app data is never transmitted
+PASS | Device acceptance checklist documents recurrence, snooze, reboot, permissions, sound and history tests
+PASS | Saved snoozes are restored before the no-regular-reminder early return
+PASS | Saved-snooze/no-reminder regression test covers one-off and active recurrence cases
+PASS | Primary section actions expose button semantics and at least 48dp touch height
+PASS | Choice rows expose radio selection semantics and a 48dp minimum touch height
+PASS | Task completion toggle has accessible title/state and a 48dp hit target
+PASS | Task delete and secondary-screen back actions have explicit accessible names
+PASS | Gradle wrapper uses the direct official distribution host with the pinned checksum
+PASS | Windows build helper has a DNS-aware temporary fallback and restores wrapper configuration
+RESULT: 155/155 static checks passed

@@ -1,0 +1,15 @@
+KAAM v27 build attempt — 17 October 2026
+
+Command:
+./gradlew :app:assembleDebug --stacktrace --no-daemon --console=plain
+
+Observed failure:
+Downloading https://downloads.gradle.org/distributions/gradle-9.6.0-bin.zip
+java.net.UnknownHostException: downloads.gradle.org
+
+Failure stage: Gradle Wrapper distribution download, before Gradle starts. The v27 wrapper uses the official direct download host to avoid the services.gradle.org redirect endpoint, but this environment cannot resolve either host. No Android SDK is configured in this environment. No APK or Android compile result is available.
+
+On the Windows development machine, ensure internet/DNS access to the Gradle distribution host and Maven repositories, install Android SDK Platform 37 and Build-Tools 36.0.0, and run:
+powershell -ExecutionPolicy Bypass -File .\tools\build_debug_windows.ps1
+
+If only downloads.gradle.org is blocked, restore the original services.gradle.org wrapper URL. Do not disable the wrapper checksum.
