@@ -28,16 +28,10 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Install required Android SDK packages
+      - name: Accept Android SDK licenses
         shell: bash
         run: |
-          set -eu
-          SDKM="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
-          yes | "$SDKM" --licenses >/dev/null || true
-          "$SDKM" --install \
-            'platform-tools' \
-            'platforms;android-37' \
-            'build-tools;36.0.0'
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
 
       - name: Run offline regression checks
         shell: bash
