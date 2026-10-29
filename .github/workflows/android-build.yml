@@ -28,10 +28,26 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Accept Android SDK licenses
+      - name: Move project root files out of pri_test
         shell: bash
         run: |
-          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
+          set -eu
+          for f in build.gradle.kts settings.gradle.kts gradle.properties gradlew gradlew.bat BUILDING_KAAM_WINDOWS.md KAAM_DEVICE_ACCEPTANCE_CHECKLIST_v25.md; do
+            if [ ! -e "$f" ] && [ -e "pri_test/$f" ]; then cp "pri_test/$f" "$f"; fi
+          done
+          chmod +x ./gradlew
+
+      - name: Install required Android SDK packages
+        shell: bash
+        run: |
+          SDKM="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKM" --licenses >/dev/null 2>&1 || true
+          # Packages that are not listed on this runner are skipped; Gradle downloads what it needs.
+          "$SDKM" --install 'platform-tools' 'platforms;android-37' 'build-tools;36.0.0' || echo "Some SDK packages not listed; Gradle will fetch them."
+
+      - name: Make sure PyYAML is available
+        shell: bash
+        run: python3 -c "import yaml" 2>/dev/null || sudo apt-get install -y python3-yaml
 
       - name: Run offline regression checks
         shell: bash
@@ -39,9 +55,7 @@ jobs:
 
       - name: Build Android debug APK
         shell: bash
-        run: |
-          chmod +x ./gradlew
-          ./gradlew :app:assembleDebug --stacktrace --no-daemon --console=plain
+        run: ./gradlew :app:assembleDebug --stacktrace --no-daemon --console=plain
 
       - name: Upload installable debug APK
         if: success()
