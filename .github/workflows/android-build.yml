@@ -28,15 +28,13 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Install required Android SDK packages
         shell: bash
         run: |
           set -eu
-          yes | sdkmanager --licenses >/dev/null
-          sdkmanager --install \
+          SDKM="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKM" --licenses >/dev/null || true
+          "$SDKM" --install \
             'platform-tools' \
             'platforms;android-37' \
             'build-tools;36.0.0'
@@ -47,7 +45,9 @@ jobs:
 
       - name: Build Android debug APK
         shell: bash
-        run: ./gradlew :app:assembleDebug --stacktrace --no-daemon --console=plain
+        run: |
+          chmod +x ./gradlew
+          ./gradlew :app:assembleDebug --stacktrace --no-daemon --console=plain
 
       - name: Upload installable debug APK
         if: success()
